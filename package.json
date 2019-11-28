@@ -1,0 +1,19 @@
+{
+  "name": "web-scraping-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jm-avila/web-scraping-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jm-avila/web-scraping-nodejs/issues"
+  },
+  "homepage": "https://github.com/jm-avila/web-scraping-nodejs#readme"
+}
