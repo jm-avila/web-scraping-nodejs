@@ -1,7 +1,8 @@
 const { getVariousTitlesAndRatings } = require("./scrappersByWebsite/imdb");
 const {
   saveMoviesInfoToJSON,
-  saveMoviesInfoToCSV
+  saveMoviesInfoToCSV,
+  downloadPosters
 } = require("./imdb/helperFunctions");
 
 const URLS = [
@@ -10,5 +11,5 @@ const URLS = [
 ];
 
 getVariousTitlesAndRatings(URLS).then(data =>
-  saveMoviesInfoToCSV(data, "movies_i_like")
+  downloadPosters(data, "movies_i_like_posters")
 );
