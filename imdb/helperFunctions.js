@@ -16,7 +16,7 @@ const saveMoviesInfoToCSV = (data, title) =>
 const downloadPosters = async moviesData => {
   for await (let movie of moviesData) {
     const { title, image } = movie;
-    request({ uri: image, headers }).pipe(
+    await request({ uri: image, headers, gzip: true }).pipe(
       fs.createWriteStream(`./imdb/${title}.jpg`)
     );
   }
