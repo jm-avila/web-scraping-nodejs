@@ -16,9 +16,16 @@ const saveMoviesInfoToCSV = (data, title) =>
 const downloadPosters = async moviesData => {
   for await (let movie of moviesData) {
     const { title, image } = movie;
-    await request({ uri: image, headers, gzip: true }).pipe(
-      fs.createWriteStream(`./imdb/${title}.jpg`)
-    );
+    try {
+      await new Promise((resolve, reject) =>
+        request({ uri: image, headers, gzip: true })
+          .pipe(fs.createWriteStream(`./imdb/${title}.jpg`))
+          .on("finish", resolve)
+          .on("error", reject)
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
