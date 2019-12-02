@@ -1,7 +1,7 @@
 const fs = require("fs");
 const papaparse = require("papaparse");
 const request = require("request");
-const headers = require("../headers.json");
+const headers = require("./headers.json");
 
 const saveMoviesInfoToJSON = (data, title) =>
   fs.writeFileSync(`./imdb/${title}.json`, JSON.stringify(data), "UTF-8");
