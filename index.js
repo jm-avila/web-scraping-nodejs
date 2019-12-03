@@ -20,4 +20,4 @@ const { getInstagramUserJSON } = require("./instagram");
 //   });
 // });
 
-getInstagramUserJSON("demium_startups").then(console.log);
+getInstagramUserJSON("willsmith").then(console.log);

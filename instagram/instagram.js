@@ -17,10 +17,22 @@ const getInstagramUserJSON = async userName => {
   const sharedDataObj = JSON.parse(sharedDataJson);
   const userData = sharedDataObj.entry_data.ProfilePage[0].graphql.user;
 
-  const { username, full_name, biography, profile_pic_url_hd } = userData;
-  const { count: numOfposts } = userData.edge_owner_to_timeline_media;
-  const { count: followers } = userData.edge_followed_by;
-  const { count: following } = userData.edge_follow;
+  const {
+    username,
+    full_name,
+    biography,
+    profile_pic_url_hd,
+    edge_owner_to_timeline_media: { count: numOfposts, edges },
+    edge_followed_by: { count: followers },
+    edge_follow: { count: following }
+  } = userData;
+
+  const latestPosts = edges.map(({ node: { id, shortcode, display_url } }) => ({
+    id,
+    shortcode,
+    display_url
+  }));
+
   debugger;
   return {
     username,
@@ -29,7 +41,8 @@ const getInstagramUserJSON = async userName => {
     profile_pic_url_hd,
     numOfposts,
     followers,
-    following
+    following,
+    latestPosts
   };
 };
 module.exports = { getInstagramUserJSON };
