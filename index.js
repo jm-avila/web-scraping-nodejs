@@ -1,18 +1,20 @@
-const { getVariousTitlesAndRatings } = require("./scrappersByWebsite/imdb");
 const {
+  getVariousTitlesAndRatings,
   saveMoviesInfoToJSON,
   saveMoviesInfoToCSV,
   downloadPosters
-} = require("./imdb/helperFunctions");
-const { login } = require("./scrappersByWebsite/toscrape");
+} = require("./imdb");
+const { login } = require("./toscrape");
 
-// const URLS = [
-//   "https://www.imdb.com/title/tt4047350/?ref_=nv_sr_srsg_0",
-//   "https://www.imdb.com/title/tt3042408/?ref_=fn_al_tt_4"
-// ];
+const URLS = [
+  "https://www.imdb.com/title/tt4047350/?ref_=nv_sr_srsg_0",
+  "https://www.imdb.com/title/tt3042408/?ref_=fn_al_tt_4"
+];
 
-// getVariousTitlesAndRatings(URLS).then(data =>
-//   downloadPosters(data, "movies_i_like_posters")
-// );
-
-login();
+getVariousTitlesAndRatings(URLS).then(data => {
+  downloadPosters(data, "movies_i_like_posters");
+  data.forEach(({ title }) => {
+    saveMoviesInfoToJSON(data, title);
+    saveMoviesInfoToCSV(data, title);
+  });
+});

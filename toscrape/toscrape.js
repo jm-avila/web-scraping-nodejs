@@ -1,7 +1,7 @@
 const request = require("request-promise");
 const cheerio = require("cheerio");
-const loggedInHeaders = require("../toscrape/loggedInHeaders.json");
-const loginHeaders = require("../toscrape/loginHeaders.json");
+const loggedInHeaders = require("./loggedInHeaders.json");
+const loginHeaders = require("./loginHeaders.json");
 
 const login = async () => {
   const getCookies = headers =>

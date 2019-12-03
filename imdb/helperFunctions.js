@@ -4,11 +4,15 @@ const request = require("request");
 const headers = require("./headers.json");
 
 const saveMoviesInfoToJSON = (data, title) =>
-  fs.writeFileSync(`./imdb/${title}.json`, JSON.stringify(data), "UTF-8");
+  fs.writeFileSync(
+    `./imdb/downloads/${title}.json`,
+    JSON.stringify(data),
+    "UTF-8"
+  );
 
 const saveMoviesInfoToCSV = (data, title) =>
   fs.writeFileSync(
-    `./imdb/${title}.csv`,
+    `./imdb/downloads/${title}.csv`,
     papaparse.unparse(JSON.stringify(data)),
     "UTF-8"
   );
@@ -19,7 +23,7 @@ const downloadPosters = async moviesData => {
     try {
       await new Promise((resolve, reject) =>
         request({ uri: image, headers, gzip: true })
-          .pipe(fs.createWriteStream(`./imdb/${title}.jpg`))
+          .pipe(fs.createWriteStream(`./imdb/downloads/${title}.jpg`))
           .on("finish", resolve)
           .on("error", reject)
       );

@@ -1,6 +1,6 @@
 const request = require("request-promise");
 const cheerio = require("cheerio");
-const headers = require("../imdb/headers.json");
+const headers = require("./headers.json");
 
 const getTitleAndRating = async URL => {
   const response = await request({
@@ -42,6 +42,6 @@ const getVariousTitlesAndRatings = async URLS => {
 };
 
 module.exports = {
-  getTitleAndRating: getTitleAndRating,
+  getTitleAndRating,
   getVariousTitlesAndRatings: getVariousTitlesAndRatings
 };
