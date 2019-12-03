@@ -6,6 +6,7 @@ const {
 } = require("./imdb");
 const { login } = require("./toscrape");
 const { getInstagramUserJSON } = require("./instagram");
+const { puppeteerScreenshot } = require("./puppeteer");
 
 // const URLS = [
 //   "https://www.imdb.com/title/tt4047350/?ref_=nv_sr_srsg_0",
@@ -21,3 +22,5 @@ const { getInstagramUserJSON } = require("./instagram");
 // });
 
 // getInstagramUserJSON("willsmith").then(console.log);
+
+puppeteerScreenshot("www.google.com", "googleMainPage.png");
