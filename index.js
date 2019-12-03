@@ -6,7 +6,10 @@ const {
 } = require("./imdb");
 const { login } = require("./toscrape");
 const { getInstagramUserJSON } = require("./instagram");
-const { puppeteerScreenshot } = require("./puppeteer");
+const {
+  puppeteerScreenshot,
+  puppeteerSearchResultsScreenshot
+} = require("./puppeteer");
 
 // const URLS = [
 //   "https://www.imdb.com/title/tt4047350/?ref_=nv_sr_srsg_0",
@@ -23,4 +26,9 @@ const { puppeteerScreenshot } = require("./puppeteer");
 
 // getInstagramUserJSON("willsmith").then(console.log);
 
-puppeteerScreenshot("www.google.com", "googleMainPage.png");
+puppeteerSearchResultsScreenshot(
+  "www.google.com",
+  "googlePuppeteerSearchResults.png",
+  'input[aria-label="Search"]',
+  "puppeteer"
+);
