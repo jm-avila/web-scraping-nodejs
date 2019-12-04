@@ -1,9 +1,3 @@
-const {
-  puppeteerScreenshot,
-  puppeteerSearchResultsScreenshot
-} = require("./puppeteer");
+const puppeteer = require("./puppeteer");
 
-module.exports = {
-  puppeteerScreenshot,
-  puppeteerSearchResultsScreenshot
-};
+module.exports = puppeteer;

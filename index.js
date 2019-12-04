@@ -8,7 +8,10 @@ const { login } = require("./toscrape");
 const { getInstagramUserJSON } = require("./instagram");
 const {
   puppeteerScreenshot,
-  puppeteerSearchResultsScreenshot
+  puppeteerSearchResultsScreenshot,
+  puppeteerPdf,
+  puppeteerGetUrlAndTitle,
+  puppeteerEmulatePhone
 } = require("./puppeteer");
 
 // const URLS = [
@@ -26,9 +29,19 @@ const {
 
 // getInstagramUserJSON("willsmith").then(console.log);
 
-puppeteerSearchResultsScreenshot(
+// puppeteerSearchResultsScreenshot(
+//   "www.google.com",
+//   "googlePuppeteerSearchResults.png",
+//   'input[aria-label="Search"]',
+//   "puppeteer"
+// );
+
+// puppeteerPdf("www.google.com", "googleMainPage.pdf");
+
+// puppeteerGetUrlAndTitle("www.google.com").then(console.log);
+
+puppeteerEmulatePhone(
   "www.google.com",
-  "googlePuppeteerSearchResults.png",
-  'input[aria-label="Search"]',
-  "puppeteer"
+  "iPhone X",
+  "googleMainPagePuppeteerIPhoneX.png"
 );

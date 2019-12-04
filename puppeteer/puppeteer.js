@@ -28,7 +28,49 @@ const puppeteerSearchResultsScreenshot = async (
   await browser.close();
 };
 
+const puppeteerPdf = async (url, fileName) => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(`https://${url}`);
+  await page.pdf({ path: `./puppeteer/pdf/${fileName}` });
+
+  await browser.close();
+};
+
+const puppeteerGetUrlAndTitle = async url => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(`https://${url}`);
+
+  const title = await page.title();
+  const currentUrl = await page.url();
+
+  await browser.close();
+
+  return {
+    title,
+    initial: url,
+    currentUrl
+  };
+};
+
+const puppeteerEmulatePhone = async (url, device, fileName) => {
+  // check the available devices at: https://github.com/puppeteer/puppeteer/blob/master/lib/DeviceDescriptors.js
+  const devices = require("puppeteer/DeviceDescriptors");
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  await page.emulate(devices[device]);
+  await page.goto(`https://${url}`);
+  await page.screenshot({ path: `./puppeteer/screenshots/${fileName}` });
+
+  await browser.close();
+};
+
 module.exports = {
   puppeteerScreenshot,
-  puppeteerSearchResultsScreenshot
+  puppeteerSearchResultsScreenshot,
+  puppeteerPdf,
+  puppeteerGetUrlAndTitle,
+  puppeteerEmulatePhone
 };
