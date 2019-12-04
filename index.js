@@ -11,7 +11,8 @@ const {
   puppeteerSearchResultsScreenshot,
   puppeteerPdf,
   puppeteerGetUrlAndTitle,
-  puppeteerEmulatePhone
+  puppeteerEmulatePhone,
+  puppeteerInstagramLogin
 } = require("./puppeteer");
 
 // const URLS = [
@@ -40,8 +41,10 @@ const {
 
 // puppeteerGetUrlAndTitle("www.google.com").then(console.log);
 
-puppeteerEmulatePhone(
-  "www.google.com",
-  "iPhone X",
-  "googleMainPagePuppeteerIPhoneX.png"
-);
+// puppeteerEmulatePhone(
+//   "www.google.com",
+//   "iPhone X",
+//   "googleMainPagePuppeteerIPhoneX.png"
+// );
+
+puppeteerInstagramLogin();

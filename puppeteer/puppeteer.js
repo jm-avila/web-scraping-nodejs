@@ -67,10 +67,23 @@ const puppeteerEmulatePhone = async (url, device, fileName) => {
   await browser.close();
 };
 
+const puppeteerInstagramLogin = async (account, password) => {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+
+  await page.goto("https://www.instagram.com/");
+  await page.waitForSelector('a[href="/accounts/login/?source=auth_switcher"]');
+  await page.keyboard.press("Enter");
+  await page.waitForNavigation();
+
+  await browser.close();
+};
+
 module.exports = {
   puppeteerScreenshot,
   puppeteerSearchResultsScreenshot,
   puppeteerPdf,
   puppeteerGetUrlAndTitle,
-  puppeteerEmulatePhone
+  puppeteerEmulatePhone,
+  puppeteerInstagramLogin
 };
