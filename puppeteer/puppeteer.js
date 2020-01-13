@@ -1,4 +1,7 @@
 const puppeteer = require("puppeteer");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const puppeteerScreenshot = async (url, fileName) => {
   const browser = await puppeteer.launch();
@@ -73,7 +76,13 @@ const puppeteerInstagramLogin = async (account, password) => {
 
   await page.goto("https://www.instagram.com/");
   await page.waitForSelector('a[href="/accounts/login/?source=auth_switcher"]');
-  await page.keyboard.press("Enter");
+  await page.click('a[href="/accounts/login/?source=auth_switcher"]');
+
+  console.log("proccess", process.env);
+  await page.waitForSelector('input[name="username"]');
+  await page.type('input[name="username"]', process.env.INSTA_USER);
+  await page.type('input[name="password"]', process.env.INSTA_PASSWORD);
+  await page.click('button[type="submit"]');
   await page.waitForNavigation();
 
   await browser.close();
