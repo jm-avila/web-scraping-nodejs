@@ -1,3 +1,4 @@
+const dotenv = require("dotenv");
 const {
   getVariousTitlesAndRatings,
   saveMoviesInfoToJSON,
@@ -46,5 +47,6 @@ const {
 //   "iPhone X",
 //   "googleMainPagePuppeteerIPhoneX.png"
 // );
+dotenv.config();
 
-puppeteerInstagramLogin();
+puppeteerInstagramLogin(process.env.INSTA_USER, process.env.INSTA_PASSWORD);
