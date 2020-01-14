@@ -14,7 +14,8 @@ const {
   puppeteerGetUrlAndTitle,
   puppeteerEmulatePhone,
   puppeteerInstagramLogin,
-  puppeteerRequestInterception
+  puppeteerRequestInterception,
+  puppeteerBasicAuthentication
 } = require("./puppeteer");
 
 dotenv.config();
@@ -53,4 +54,6 @@ dotenv.config();
 
 // puppeteerInstagramLogin(process.env.INSTA_USER, process.env.INSTA_PASSWORD);
 
-puppeteerRequestInterception("learnscraping.com/");
+// puppeteerRequestInterception("learnscraping.com/");
+
+puppeteerBasicAuthentication();

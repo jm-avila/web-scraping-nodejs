@@ -104,6 +104,17 @@ const puppeteerRequestInterception = async url => {
   await browser.close();
 };
 
+const puppeteerBasicAuthentication = async () => {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+
+  await page.authenticate({ username: "admin", password: "admin" });
+  await page.goto(`https://httpbin.org/basic-auth/admin/admin`);
+  await page.waitForNavigation();
+
+  await browser.close();
+};
+
 module.exports = {
   puppeteerScreenshot,
   puppeteerSearchResultsScreenshot,
@@ -111,5 +122,6 @@ module.exports = {
   puppeteerGetUrlAndTitle,
   puppeteerEmulatePhone,
   puppeteerInstagramLogin,
-  puppeteerRequestInterception
+  puppeteerRequestInterception,
+  puppeteerBasicAuthentication
 };
