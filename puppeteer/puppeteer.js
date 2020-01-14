@@ -85,11 +85,31 @@ const puppeteerInstagramLogin = async (account, password) => {
   await browser.close();
 };
 
+const puppeteerRequestInterception = async url => {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+
+  await page.setRequestInterception(true);
+
+  await page.on("request", request => {
+    if (["image", "stylesheet", "font"].includes(request.resourceType())) {
+      request.abort();
+    } else {
+      request.continue();
+    }
+  });
+
+  await page.goto(`https://${url}`);
+  await page.waitForNavigation();
+  await browser.close();
+};
+
 module.exports = {
   puppeteerScreenshot,
   puppeteerSearchResultsScreenshot,
   puppeteerPdf,
   puppeteerGetUrlAndTitle,
   puppeteerEmulatePhone,
-  puppeteerInstagramLogin
+  puppeteerInstagramLogin,
+  puppeteerRequestInterception
 };

@@ -13,8 +13,11 @@ const {
   puppeteerPdf,
   puppeteerGetUrlAndTitle,
   puppeteerEmulatePhone,
-  puppeteerInstagramLogin
+  puppeteerInstagramLogin,
+  puppeteerRequestInterception
 } = require("./puppeteer");
+
+dotenv.config();
 
 // const URLS = [
 //   "https://www.imdb.com/title/tt4047350/?ref_=nv_sr_srsg_0",
@@ -47,6 +50,7 @@ const {
 //   "iPhone X",
 //   "googleMainPagePuppeteerIPhoneX.png"
 // );
-dotenv.config();
 
-puppeteerInstagramLogin(process.env.INSTA_USER, process.env.INSTA_PASSWORD);
+// puppeteerInstagramLogin(process.env.INSTA_USER, process.env.INSTA_PASSWORD);
+
+puppeteerRequestInterception("learnscraping.com/");
